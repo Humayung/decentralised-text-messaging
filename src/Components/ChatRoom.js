@@ -31,7 +31,7 @@ class ChatRoom extends React.Component {
 	render() {
 		return (
 			<div>
-				<Grid container spacing={1}>
+				<Grid container spacing={1} style={{overflowY: 'auto', maxHeight: '500'}}>
 					{this.buildBubbles()}
 				</Grid>
 			</div>

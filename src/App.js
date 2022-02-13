@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import ChatRoom from './Components/ChatRoom'
 import Identicon from 'react-identicons'
+import ScrollView from './Components/ScrollView'
+import ScrollElement from './Components/ScrollElement'
 
 import ChatBubble from './Components/ChatBubble'
 function App() {
@@ -353,14 +355,16 @@ function App() {
 		loadWeb3()
 	}, [])
 
-	useEffect(() => {
-		buildConversationBubbles
-	}, [conversation])
+	// useEffect(() => {
+	// 	buildConversationBubbles()
+	// }, [conversation])
 
 	useEffect(() => {
 		console.log('Selected receive changed:', selectedReceiver)
 		loadConversation()
 	}, [selectedReceiver])
+
+	const items = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 
 	return (
 		// <div>
@@ -368,8 +372,94 @@ function App() {
 		// 	<div>{currentAccount}</div>
 		// </div>
 
-		<div style={{backgroundColor: '#BFB99B'}}>
-			<Grid container>
+		<div style={{display: 'flex', flexDirection: 'row'}}>
+			<div style={{display: 'flex', flexDirection: 'column', width: '40%', height: '100%'}}>
+				<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A'}}>
+					<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+						<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+					</div>
+					<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+						<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+						<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+					</div>
+				</div>
+			</div>
+
+			<div style={{overflowY:'scroll', scrollBehavior:'smooth', height:500, display: 'flex', flexDirection: 'column', width: '60%', backgroundColor: '#BFB99B'}}>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-end', borderRadius:15, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>You wanna trade some?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+				<div style={{backgroundColor: '#676D88', color: 'white', alignSelf:'flex-start', borderRadius:15, minWidth:100, padding:10, margin:10}}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>yes?</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:40</div>
+				</div>
+			</div>
+		</div>
+	)
+
+	{
+		/* <div width='50%' style={{float: 'right'}}>
+				<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
+				</Box>
+			</div>
+			<div width='50%' style={{float: 'left'}}>
+				<Box paddingY={0} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
+				</Box>
+			</div>
+			<div width='50%' style={{float: 'right'}}>
+				<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
+					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
+					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
+				</Box>
+			</div> */
+	}
+	{
+		/* <Grid container>
 				<Grid item xs={6}>
 					{chatRoomList &&
 						chatRoomList.map(chatRoom => {
@@ -391,13 +481,13 @@ function App() {
 				</Grid>
 				<Grid item xs={6}>
 					<div>{conversation && <ChatRoom conversation={conversation} />}</div>
-
 					<input value={typedMessage} placeholder='Message goes here' onChange={evt => setTypedMessage(evt.target.value)} type='text' />
 					<button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</button>
 				</Grid>
-			</Grid>
-		</div>
-		// <div>
+			</Grid> */
+	}
+	{
+		/* // <div>
 		// 	<div className='main-app'>
 		// 		<h1>Decentralised Text Messaging</h1>
 		// 		<div>{currentAccount ? joinButton() : connectWalletButton()}</div>
@@ -419,11 +509,11 @@ function App() {
 		// 		<div>
 		// 			<div style={{fontWeight: 'normal', marginBottom: 10}}>0x5E721F2a9b14A3bB3f727CF5bD2e7CdE594Abe96</div>
 		// 			<div style={{fontWeight: 'normal'}}>got some bayc lol</div>
-		// 			{/* <ChatRoom conversation={conversation} /> */}
-		// 		</div>
-		// 	</div>
-		// </div>
-	)
+		// 			{/* <ChatRoom conversation={conversation} /> */
+	}
+	// 		</div>
+	// 	</div>
+	// </div> */}
 
 	// useEffect(() => {
 	// 	async function load() {
