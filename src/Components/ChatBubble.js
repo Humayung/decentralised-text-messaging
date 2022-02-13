@@ -11,17 +11,23 @@ class ChatBubble extends React.Component {
 
 	render() {
 		return (
-			<div style={{justifyItems:'right'}}>
-				{this.id == 0 ? (
-					<Box width='50%' paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
-						<div style={{fontSize: 15, fontWeight: 'normal'}}>{this.text}</div>
-						<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>{this.time}</div>
-					</Box>
+			<div>
+				{this.id == 1 ? (
+					<div width='100%' style={{float: 'left'}}>
+						<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
+							<div flexShr style={{fontSize: 15, fontWeight: 'normal'}}>
+								{this.text}
+							</div>
+							<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>{this.time}</div>
+						</Box>
+					</div>
 				) : (
-					<Box style={{alignSelf:'flex-end'}} width='50%' paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
-						<div style={{fontSize: 15, fontWeight: 'normal'}}>{this.text}</div>
-						<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>{this.time}</div>
-					</Box>
+					<div width='50%' style={{float: 'right'}}>
+						<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
+							<div style={{fontSize: 15, fontWeight: 'normal'}}>{this.text}</div>
+							<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>{this.time}</div>
+						</Box>
+					</div>
 				)}
 			</div>
 		)
