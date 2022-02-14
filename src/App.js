@@ -228,7 +228,6 @@ function App() {
 	}
 
 	const sendMessage = async (addressTo, message) => {
-		toast('Wow so easy!')
 		const {ethereum} = window
 		try {
 			if (message == '') return
@@ -244,7 +243,7 @@ function App() {
 				setTypedMessage('')
 
 				await toast.promise(loadConversation(), {
-					pending: 'Updateing conversation',
+					pending: 'Updating conversation',
 					success: 'Conversation updated!',
 					error: 'Failed updating conversation!'
 				})
@@ -292,7 +291,7 @@ function App() {
 				console.log('Requesting connection to: ', typedNewContact)
 				await toast.promise(txn.wait(), {
 					pending: 'Adding contact',
-					success: 'Contact added!',
+					success: 'Contact requested!',
 					error: 'Failed adding contact!'
 				})
 				console.log(`Created, see transaction: https://rinkeby.etherscan.io/tx/${txn.hash}`)
@@ -307,7 +306,7 @@ function App() {
 
 	const connectedAccount = () => {
 		if (currentAccount) {
-			const shorten = currentAccount.substring(0, 7) + '...' + currentAccount.substring(currentAccount.length - 5, currentAccount.length)
+			const shorten = 'Connected ' + currentAccount.substring(0, 7) + '...' + currentAccount.substring(currentAccount.length - 5, currentAccount.length)
 			return shorten
 		} else {
 			return 'Not connected'
@@ -441,13 +440,13 @@ function App() {
 						<Identicon style={{borderRadius: '50%'}} size='40' string={currentAccount} />
 					</div>
 					<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 20}}>{connectedAccount()}</div>
-					<div style={{alignSelf: 'center', marginLeft: 300}} onClick={() => setShowModal(true)}>
+					<div style={{alignSelf: 'center', marginLeft: 160}} onClick={() => setShowModal(true)}>
 						<img src={PlusIcon} />
 					</div>
 				</div>
 			</div>
 			<div style={{height: '90vh', display: 'flex'}}>
-				<div style={{display: 'flex', flexDirection: 'column'}}>
+				<div style={{display: 'flex', flexDirection: 'column', minWidth: '35vw'}}>
 					<div style={{backgroundColor: '#6F6B5A', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6F6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
 							<img src={SearchIcon} style={{paddingRight: 10}} />
@@ -471,10 +470,10 @@ function App() {
 					{chatRoomLoading && (
 						<div style={{display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center'}}>{<ReactLoading type='spin' />}</div>
 					)}
-					{chatRoomList &&
+					{chatRoomList && chatRoomLoading != true &&
 						chatRoomList.map(function (chatRoom) {
 							return (
-								<div className='table-col' style={{width: '40vw', minWidth: '40vw'}} onClick={() => setSelectedReceiver(chatRoom.contact)}>
+								<div className='table-col' style={{width: '35vw'}} onClick={() => setSelectedReceiver(chatRoom.contact)}>
 									<div
 										id='eventsContainer'
 										style={{display: 'flex', height: '100%', flexDirection: 'column', width: '100%', backgroundColor: '#6F6B5A'}}>
@@ -504,6 +503,9 @@ function App() {
 							flexDirection: 'column',
 							backgroundColor: '#BFB99B'
 						}}>
+						{selectedReceiver == '' && (
+							<div style={{margin: 'auto', textJustify: 'auto', fontSize:25, fontWeight:'bold'}}>Select a contact to show messages</div>
+						)}
 						{conversation &&
 							conversation.map(function (text) {
 								return (
