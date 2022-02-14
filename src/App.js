@@ -365,105 +365,159 @@ function App() {
 	}, [selectedReceiver])
 
 	const items = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
-
 	return (
 		// <div>
 		// 	<div>{currentAccount ? joinButton() : connectWalletButton()}</div>
 		// 	<div>{currentAccount}</div>
 		// </div>
-		<div style={{display: 'flex', flexDirection: 'column'}}>
-			<div style={{backgroundColor: '#888267', alignItems: 'center', justifyContent: 'center'}}>
-				<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 20, marginLeft: 30}}>
-					<div style={{display: 'flex', alignItems: 'center'}}>
-						<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+		// <div style={{display: 'flex', flexDirection: 'column'}}>
+		// 	<div style={{backgroundColor: '#888267', alignItems: 'center', justifyContent: 'center'}}>
+		// 		<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 20, marginLeft: 30}}>
+		// 			<div style={{display: 'flex', alignItems: 'center'}}>
+		// 				<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+		// 			</div>
+		// 			<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 20}}>Connected To 0x5e72...be96</div>
+		// 		</div>
+		// 	</div>
+		<div className='row table-row'>
+			<div className='table-col'>
+				<div id='eventsContainer' style={{display: 'flex', flexDirection: 'column', width: '100%', backgroundColor: '#6F6B5A'}}>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
 					</div>
-					<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 20}}>Connected To 0x5e72...be96</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
+					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
+						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
+							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
+						</div>
+						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
+							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
+							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div style={{display: 'flex', flexDirection: 'row'}}>
-				<div style={{display: 'flex', flexDirection: 'column', width: '40%', height: '100%', backgroundColor: '#6F6B5A'}}>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-					<div style={{display: 'flex', flexDirection: 'row', backgroundColor: '#6F6B5A', marginLeft: 25, marginTop: 6, marginBottom: 6}}>
-						<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#6F6B5A'}}>
-							<Identicon style={{borderRadius: '50%'}} size='40' string={'sdf'} />
-						</div>
-						<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
-							<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>Address</div>
-							<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>You: Yes?</div>
-						</div>
-					</div>
-				</div>
 
+			<div className='table-col'>
 				<div
+					id='eventsContainer'
 					style={{
-						overflowY: 'scroll',
-						scrollBehavior: 'smooth',
-						height: 600,
+						width: '100%',
 						display: 'flex',
 						flexDirection: 'column',
-						width: '60%',
 						backgroundColor: '#BFB99B'
 					}}>
 					<div style={{backgroundColor: '#676D88', color: 'white', alignSelf: 'flex-end', borderRadius: 15, padding: 10, margin: 10}}>
@@ -541,6 +595,7 @@ function App() {
 				</div>
 			</div>
 		</div>
+		// </div>
 	)
 
 	{

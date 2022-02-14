@@ -12,3 +12,29 @@
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 } */
+
+html,
+body {
+	height: 100%;
+	/*border: 1px solid red;*/
+}
+
+nav.navbar {
+	margin: 0;
+}
+
+.table-row {
+	height: calc(100vh - 53px);
+	display: flex;
+}
+
+.table-col {
+	display: flex;
+	width: 100%;
+}
+
+#eventsContainer {
+	height: 100%;
+	overflow: auto;
+
+}
