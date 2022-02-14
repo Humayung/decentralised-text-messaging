@@ -13,20 +13,22 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 } */
 
-html,
+
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
-	height: 100%;
-	/*border: 1px solid red;*/
+    height: 100%;
+    overflow: auto;
+	background-color: #6F6B5A;
 }
 
 nav.navbar {
 	margin: 0;
 }
 
-.table-row {
-	height: calc(100vh - 53px);
-	display: flex;
-}
 
 .table-col {
 	display: flex;
