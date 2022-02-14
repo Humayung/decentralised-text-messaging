@@ -135,10 +135,10 @@ function App() {
 		return time
 	}
 
-	const loadConversation = async update => {
+	const loadConversation = async => {
 		return new Promise(async resolve => {
 			try {
-				console.log(currentAccount, selectedReceiver)
+				console.log(currentAccount, selectedReceiver, contract)
 				console.log('getting messages')
 				const chatId = await contract.getChatId(currentAccount, selectedReceiver)
 				const conversationLen = await contract.getConversationLen(chatId)
@@ -176,10 +176,17 @@ function App() {
 			}
 		})
 	}
+	// useEffect(() => {
+	// 	const interval = setInterval(async () => {
+	// 		await loadConversation()
+	// 		console.log('conversation updated')
+	// 	}, 4000)
+
+	// 	return () => clearInterval(interval)
+	// }, [])
 
 	const getChatRoomList = async () => {
 		try {
-			setChatRoomLoading(true)
 			console.log('getting chatroom', contacts, contract)
 			const newChatRoomList = []
 			console.log('lastChatRoom', indexOfLastChatRoom)
@@ -217,6 +224,7 @@ function App() {
 
 	const getContacts = async () => {
 		try {
+			setChatRoomLoading(true)
 			console.log('Getting contact', currentAccount, contract)
 			const contactsLen = await contract.getContactsLen(currentAccount)
 			const newContacts = []
