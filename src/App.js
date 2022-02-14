@@ -15,6 +15,8 @@ import Popup from './Components/popup/popup'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ReactLoading from 'react-loading'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 function App() {
 	const [currentAccount, setCurrentAccount] = useState(null)
 	const [contacts, setContacts] = useState([])
@@ -306,7 +308,8 @@ function App() {
 
 	const connectedAccount = () => {
 		if (currentAccount) {
-			const shorten = 'Connected ' + currentAccount.substring(0, 7) + '...' + currentAccount.substring(currentAccount.length - 5, currentAccount.length)
+			const shorten =
+				'Connected ' + currentAccount.substring(0, 7) + '...' + currentAccount.substring(currentAccount.length - 5, currentAccount.length)
 			return shorten
 		} else {
 			return 'Not connected'
@@ -371,7 +374,7 @@ function App() {
 									style={{display: 'flex', backgroundColor: 'transparent', padding: 10, borderRadius: 10, marginBottom: 50}}
 									border={2}
 									borderColor='#6E6B5A'>
-									<input
+									<TextField
 										style={{
 											width: '100%',
 											backgroundColor: 'transparent',
@@ -385,7 +388,7 @@ function App() {
 								</Box>
 							</div>
 							<div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'flex-end'}}>
-								<button
+								<Button
 									onClick={() => setShowModal(false)}
 									style={{
 										backgroundColor: '#6E6B5A',
@@ -398,12 +401,12 @@ function App() {
 										marginRight: 15
 									}}>
 									CANCEL
-								</button>
-								<button
+								</Button>
+								<Button
 									onClick={() => addContact()}
 									style={{backgroundColor: '#6E6B5A', color: 'white', fontSize: 15, borderRadius: 10, padding: 5, paddingLeft: 30, paddingRight: 30}}>
 									ADD
-								</button>
+								</Button>
 							</div>
 						</>
 					}
@@ -415,7 +418,7 @@ function App() {
 					content={
 						<>
 							<div style={{color: 'white', textAlign: 'center', fontSize: 20, marginBottom: 20, marginTop: 10}}>Click to create account</div>
-							<button
+							<Button
 								onClick={() => createAccount()}
 								style={{
 									backgroundColor: '#6E6B5A',
@@ -428,7 +431,7 @@ function App() {
 									marginBottom: 20
 								}}>
 								Create Account
-							</button>
+							</Button>
 						</>
 					}
 					handleClose={() => setShowModal(false)}
@@ -450,7 +453,7 @@ function App() {
 					<div style={{backgroundColor: '#6F6B5A', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6F6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
 							<img src={SearchIcon} style={{paddingRight: 10}} />
-							<input
+							<TextField
 								style={{
 									'&:hover,&:focus': {
 										outline: 'none'
@@ -464,13 +467,14 @@ function App() {
 								onChange={evt => setTypedMessage(evt.target.value)}
 								type='text'
 							/>
-							{/* <button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</button> */}
+							{/* <Button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</Button> */}
 						</Box>
 					</div>
 					{chatRoomLoading && (
 						<div style={{display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center'}}>{<ReactLoading type='spin' />}</div>
 					)}
-					{chatRoomList && chatRoomLoading != true &&
+					{chatRoomList &&
+						chatRoomLoading != true &&
 						chatRoomList.map(function (chatRoom) {
 							return (
 								<div className='table-col' style={{width: '35vw'}} onClick={() => setSelectedReceiver(chatRoom.contact)}>
@@ -504,7 +508,7 @@ function App() {
 							backgroundColor: '#BFB99B'
 						}}>
 						{selectedReceiver == '' && (
-							<div style={{margin: 'auto', textJustify: 'auto', fontSize:25, fontWeight:'bold'}}>Select a contact to show messages</div>
+							<div style={{margin: 'auto', textJustify: 'auto', fontSize: 25, fontWeight: 'bold'}}>Select a contact to show messages</div>
 						)}
 						{conversation &&
 							conversation.map(function (text) {
@@ -528,7 +532,8 @@ function App() {
 					<div style={{backgroundColor: '#888267', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6E6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
 							<img src={EmojiIcon} style={{paddingRight: 10}} />
-							<input
+							<TextField
+								fullWidth
 								style={{
 									'&:hover,&:focus': {
 										outline: 'none'
@@ -594,7 +599,7 @@ function App() {
 				<Grid item xs={6}>
 					<div>{conversation && <ChatRoom conversation={conversation} />}</div>
 					<input value={typedMessage} placeholder='Message goes here' onChange={evt => setTypedMessage(evt.target.value)} type='text' />
-					<button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</button>
+					<Button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</Button>
 				</Grid>
 			</Grid> */
 	}
