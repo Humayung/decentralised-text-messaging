@@ -22,6 +22,7 @@ function App() {
 	const [contacts, setContacts] = useState([])
 	const [typedMessage, setTypedMessage] = useState('')
 	const [selectedReceiver, setSelectedReceiver] = useState('')
+	const [prevSelectedReceiver, setPrevSelectedReceiver] = useState('')
 	const [conversation, setConversation] = useState([])
 	const [chatRoomList, setChatRoomList] = useState([])
 	const [contract, setContract] = useState(null)
@@ -125,12 +126,16 @@ function App() {
 
 	const parseTime = async time => {
 		time = time.toNumber()
+		time = time * 1000
 		time = new Date(time)
-		time = `${time.getHours()}:${time.getMinutes()}`
+
+		const hours = '' + time.getHours()
+		const minutes = '0' + time.getMinutes()
+		time = `${hours.substring(hours.length - 2, hours.length)}:${minutes.substring(minutes.length - 2, minutes.length)}`
 		return time
 	}
 
-	const loadConversation = async () => {
+	const loadConversation = async update => {
 		return new Promise(async resolve => {
 			try {
 				console.log(currentAccount, selectedReceiver)
@@ -139,20 +144,33 @@ function App() {
 				const conversationLen = await contract.getConversationLen(chatId)
 				console.log('lastMessage', indexOfLastMessage)
 				const newConversation = []
-				for (let i = indexOfLastMessage; i < conversationLen; i++) {
+				let index = 0
+				if (prevSelectedReceiver != selectedReceiver) {
+					index = 0
+				} else {
+					index = indexOfLastMessage
+					setIndexOfLastMessage(Math.max(conversationLen, 0))
+				}
+				for (let i = index; i < conversationLen; i++) {
 					const message = await contract.getMessage(chatId, i)
 					const time = await parseTime(message.time)
+					console.log(message.time)
 					const messageId = await messageIdOf(message.sender)
 					const text = {text: message.text, id: messageId, time: time}
 					newConversation.push(text)
 					console.log(text)
 				}
 				console.log('newConversation', newConversation)
-				setIndexOfLastMessage(Math.max(conversationLen, 0))
-				setConversation(oldConversation => [...oldConversation, ...newConversation])
-				resolve('loaded')
+
+				if (prevSelectedReceiver != selectedReceiver) {
+					setConversation(newConversation)
+				} else {
+					setConversation(oldConversation => [...oldConversation, ...newConversation])
+				}
+
 				console.log(conversation)
 				console.log('message loaded!')
+				resolve('loaded')
 			} catch (err) {
 				console.log(err)
 			}
@@ -358,6 +376,8 @@ function App() {
 				success: 'Conversation updated!',
 				error: 'Failed updating conversation!'
 			})
+			console.log('receiver', selectedReceiver, prevSelectedReceiver)
+			setPrevSelectedReceiver(selectedReceiver)
 		}
 	}, [selectedReceiver])
 
