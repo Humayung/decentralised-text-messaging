@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import './App.css'
 import {ethers} from 'ethers'
-import Web3 from 'web3';
+import Web3 from 'web3'
 import {CONTRACT_ABI, CONTRACT_ADDRESS} from './config'
 import Box from '@material-ui/core/Box'
 import Identicon from 'react-identicons'
@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import ReactLoading from 'react-loading'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Picker from 'emoji-picker-react'
 function App() {
 	const [currentAccount, setCurrentAccount] = useState(null)
 	const [contacts, setContacts] = useState([])
@@ -31,6 +32,7 @@ function App() {
 	const [joinShowModal, setJoinShowModal] = useState(false)
 	const [typedNewContact, setTypedNewContact] = useState('')
 	const [chatRoomLoading, setChatRoomLoading] = useState(true)
+	const [chooseEmoji, setChooseEmoji] = useState(null)
 
 	const loadContract = async () => {
 		const {ethereum} = window
@@ -304,6 +306,11 @@ function App() {
 		}
 	}
 
+	const onEmojiClick = (event, emojiObject) => {
+		setTypedMessage(typedMessage + emojiObject.emoji)
+		setChooseEmoji(false)
+	}
+
 	useEffect(() => {
 		checkIfJoined()
 	}, [contract, currentAccount])
@@ -336,6 +343,11 @@ function App() {
 
 	return (
 		<div style={{display: 'flex', flexDirection: 'column'}}>
+			{chooseEmoji && (
+				<div style={{zIndex: 2}}>
+					<Picker onEmojiClick={onEmojiClick} />
+				</div>
+			)}
 			<ToastContainer autoClose={2000} />
 			{addContactShoModal && (
 				<Popup
@@ -504,7 +516,7 @@ function App() {
 					</div>
 					<div style={{backgroundColor: '#888267', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6E6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
-							<img src={EmojiIcon} alt='emoji' style={{paddingRight: 10}} />
+							<img onClick={() => setChooseEmoji(true)} src={EmojiIcon} alt='emoji' style={{paddingRight: 10}} />
 							<TextField
 								fullWidth
 								style={{
