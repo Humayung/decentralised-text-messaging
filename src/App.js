@@ -1,16 +1,14 @@
 import {useEffect, useState} from 'react'
 import './App.css'
-import Web3 from 'web3'
 import {ethers} from 'ethers'
+import Web3 from 'web3';
 import {CONTRACT_ABI, CONTRACT_ADDRESS} from './config'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
 import Identicon from 'react-identicons'
 import SendIcon from './img/send-icon.svg'
 import EmojiIcon from './img/emoji-icon.svg'
 import SearchIcon from './img/search-icon.svg'
 import PlusIcon from './img/plus-icon.svg'
-import ChatBubble from './Components/ChatBubble'
 import Popup from './Components/popup/popup'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -70,7 +68,7 @@ function App() {
 			if (ethereum) {
 				const accounts = await getAccounts()
 				const status = await contract.getStatus(accounts[0])
-				if (status == 0) setJoinShowModal(true)
+				if (status === 0) setJoinShowModal(true)
 			}
 		} catch (err) {
 			console.log(err)
@@ -120,7 +118,7 @@ function App() {
 	const messageIdOf = async sender => {
 		sender = sender.toLowerCase()
 		const thisAccount = currentAccount.toLowerCase()
-		const messageId = sender == thisAccount ? 0 : 1
+		const messageId = sender === thisAccount ? 0 : 1
 		return messageId
 	}
 
@@ -140,12 +138,12 @@ function App() {
 			try {
 				console.log(currentAccount, selectedReceiver, contract)
 				console.log('getting messages')
-				const chatId = await contract.getChatId(currentAccount, selectedReceiver)
+				const chatId = await getChatId(currentAccount, selectedReceiver)
 				const conversationLen = await contract.getConversationLen(chatId)
 				console.log('lastMessage', indexOfLastMessage)
 				const newConversation = []
 				let index = 0
-				if (prevSelectedReceiver != selectedReceiver) {
+				if (prevSelectedReceiver !== selectedReceiver) {
 					index = 0
 				} else {
 					index = indexOfLastMessage
@@ -162,7 +160,7 @@ function App() {
 				}
 				console.log('newConversation', newConversation)
 
-				if (prevSelectedReceiver != selectedReceiver) {
+				if (prevSelectedReceiver !== selectedReceiver) {
 					setConversation(newConversation)
 				} else {
 					setConversation(oldConversation => [...oldConversation, ...newConversation])
@@ -185,6 +183,16 @@ function App() {
 	// 	return () => clearInterval(interval)
 	// }, [])
 
+	const getChatId = async (a, b) => {
+		return await contract.getChatId(a, b)
+		let chatId = ''
+		if (a > b) {
+			chatId = Web3.utils.soliditySha3(a, b)
+		} else {
+			chatId = Web3.utils.soliditySha3(b, a)
+		}
+		return chatId
+	}
 	const getChatRoomList = async () => {
 		try {
 			console.log('getting chatroom', contacts, contract)
@@ -194,7 +202,7 @@ function App() {
 				console.log('iii', i)
 				const contact = contacts[i]
 				console.log(contact)
-				const chatId = await contract.getChatId(currentAccount, contact)
+				const chatId = await getChatId(currentAccount, contact)
 				const conversationLen = await contract.getConversationLen(chatId)
 				let latestMessage = ''
 				let messageId = ''
@@ -239,26 +247,10 @@ function App() {
 			console.log(err)
 		}
 	}
-
-	const getLatestMessage = async () => {
-		try {
-			const contactsLen = await contract.getContactsLen(currentAccount)
-			const contacts = []
-
-			for (let i = 0; i < contactsLen; i++) {
-				const contact = await contract.getContacts(currentAccount, i)
-				contacts.push(contact)
-			}
-			setContacts(contacts)
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
 	const sendMessage = async (addressTo, message) => {
 		const {ethereum} = window
 		try {
-			if (message == '') return
+			if (message === '') return
 			if (ethereum) {
 				const txn = await contract.sendMessage(addressTo, message)
 				console.log('Sending message to', addressTo)
@@ -281,36 +273,6 @@ function App() {
 		}
 	}
 
-	// const getLatestMessage = async () => {
-	// 	console.log('getting message')
-	// 	const chatId = await getChatId(currentAccount, selectedReceiver)
-	// 	const conversationLen = await getConversationLen(chatId)
-	// 	const position = conversationLen - 1
-
-	// 	const message = await getMessage(chatId, position)
-	// 	setLatestMessage(message.text)
-	// 	console.log(message.text)
-	// }
-
-	const chatRoomItem = (latestMessage, address) => {
-		// <div style={{display: 'flex'}}>
-		// 		<div style={{backgroundColor: '#decddd', padding: 10, float: 'left'}}>
-		// 			<Identicon size='32' string={address} />
-		// 		</div>
-		// 		<div style={{backgroundColor: '#cedddd', padding: 10, float: 'left'}}>
-		// 			<div style={{fontWeight: 'normal', marginBottom: 10}}>address</div>
-		// 			<div style={{fontWeight: 'normal'}}>{latestMessage}</div>
-		// 		</div>
-		// 	</div>
-		return <div>ini</div>
-	}
-
-	// const chatRoomList = () => {
-	// 	const item = []
-	// 	contacts.forEach(element => {
-	// 		item.push(chatRoomItem())
-	// 	})
-	//
 	const addContact = async () => {
 		const {ethereum} = window
 		try {
@@ -358,23 +320,6 @@ function App() {
 	useEffect(() => {
 		loadWeb3()
 	}, [])
-
-	const showToast = message => {
-		console.log('toasted')
-		toast.info('message', {
-			position: 'top-right',
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined
-		})
-	}
-
-	// useEffect(() => {
-	// 	buildConversationBubbles()
-	// }, [conversation])
 
 	useEffect(() => {
 		console.log('Selected receive changed:', selectedReceiver)
@@ -472,7 +417,7 @@ function App() {
 					</div>
 					<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 20}}>{connectedAccount()}</div>
 					<div style={{alignSelf: 'center', marginLeft: 160}} onClick={() => setShowModal(true)}>
-						<img src={PlusIcon} />
+						<img src={PlusIcon} alt='add contact' />
 					</div>
 				</div>
 			</div>
@@ -480,7 +425,7 @@ function App() {
 				<div style={{display: 'flex', flexDirection: 'column', minWidth: '35vw'}}>
 					<div style={{backgroundColor: '#6F6B5A', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6F6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
-							<img src={SearchIcon} style={{paddingRight: 10}} />
+							<img src={SearchIcon} alt='search' style={{paddingRight: 10}} />
 							<TextField
 								style={{
 									'&:hover,&:focus': {
@@ -502,7 +447,7 @@ function App() {
 						<div style={{display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center'}}>{<ReactLoading type='spin' />}</div>
 					)}
 					{chatRoomList &&
-						chatRoomLoading != true &&
+						chatRoomLoading !== true &&
 						chatRoomList.map(function (chatRoom) {
 							return (
 								<div className='table-col' style={{width: '35vw'}} onClick={() => setSelectedReceiver(chatRoom.contact)}>
@@ -516,7 +461,7 @@ function App() {
 											<div style={{backgroundColor: '#6F6B5A', padding: 5}}>
 												<div style={{fontWeight: 'normal', marginBottom: 5, marginLeft: 5}}>{chatRoom.contact}</div>
 												<div style={{fontWeight: 'normal', fontSize: 12, marginLeft: 5}}>
-													{chatRoom.id == 0 ? 'You:' : ''} {chatRoom.latestMessage}
+													{chatRoom.id === 0 ? 'You:' : ''} {chatRoom.latestMessage}
 												</div>
 											</div>
 										</div>
@@ -535,7 +480,7 @@ function App() {
 							flexDirection: 'column',
 							backgroundColor: '#BFB99B'
 						}}>
-						{selectedReceiver == '' && (
+						{selectedReceiver === '' && (
 							<div style={{margin: 'auto', textJustify: 'auto', fontSize: 25, fontWeight: 'bold'}}>Select a contact to show messages</div>
 						)}
 						{conversation &&
@@ -545,7 +490,7 @@ function App() {
 										style={{
 											backgroundColor: '#676D88',
 											color: 'white',
-											alignSelf: text.id == 1 ? 'flex-start' : 'flex-end',
+											alignSelf: text.id === 1 ? 'flex-start' : 'flex-end',
 											borderRadius: 15,
 											minWidth: 100,
 											padding: 10,
@@ -559,7 +504,7 @@ function App() {
 					</div>
 					<div style={{backgroundColor: '#888267', padding: 20}}>
 						<Box style={{display: 'flex', backgroundColor: '#6E6B5A', padding: 10, borderRadius: 30}} border={2} borderColor='#A09B7D'>
-							<img src={EmojiIcon} style={{paddingRight: 10}} />
+							<img src={EmojiIcon} alt='emoji' style={{paddingRight: 10}} />
 							<TextField
 								fullWidth
 								style={{
@@ -582,122 +527,6 @@ function App() {
 			</div>
 		</div>
 	)
-
-	{
-		/* <div width='50%' style={{float: 'right'}}>
-				<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
-					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
-					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
-				</Box>
-			</div>
-			<div width='50%' style={{float: 'left'}}>
-				<Box paddingY={0} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
-					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
-					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
-				</Box>
-			</div>
-			<div width='50%' style={{float: 'right'}}>
-				<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
-					<div style={{fontSize: 15, fontWeight: 'normal'}}>hey</div>
-					<div style={{fontSize: 11, fontWeight: 'normal', color: '#BCBCBC', paddingTop: 3}}>23:50</div>
-				</Box>
-			</div> */
-	}
-	{
-		/* <Grid container>
-				<Grid item xs={6}>
-					{chatRoomList &&
-						chatRoomList.map(chatRoom => {
-							return (
-								<div key={chatRoom.contact} style={{display: 'flex'}} onClick={() => setSelectedReceiver(chatRoom.contact)}>
-									<div style={{backgroundColor: '#decddd', padding: 10, float: 'left'}}>
-										<Identicon size='32' string={chatRoom.contact} />
-									</div>
-									<div style={{backgroundColor: '#cedddd', padding: 10, float: 'left'}}>
-										<div style={{fontWeight: 'normal', marginBottom: 10}}>{chatRoom.contact}</div>
-										<div style={{fontWeight: 'normal'}}>
-											{chatRoom.messageId == 0 ? 'You: ' : ''}
-											{chatRoom.latestMessage}
-										</div>
-									</div>
-								</div>
-							)
-						})}
-				</Grid>
-				<Grid item xs={6}>
-					<div>{conversation && <ChatRoom conversation={conversation} />}</div>
-					<input value={typedMessage} placeholder='Message goes here' onChange={evt => setTypedMessage(evt.target.value)} type='text' />
-					<Button onClick={() => sendMessage(selectedReceiver, typedMessage)}>Send</Button>
-				</Grid>
-			</Grid> */
-	}
-	{
-		/* // <div>
-		// 	<div className='main-app'>
-		// 		<h1>Decentralised Text Messaging</h1>
-		// 		<div>{currentAccount ? joinButton() : connectWalletButton()}</div>
-		// 		<div>{requestConnectionButton()}</div>
-		// 		<div>{sendMessageButton()}</div>
-		// 		<input placeholder='message' value={message} onInput={e => setMessage(e.target.value)} />
-		// 		<input placeholder='selectedReceiver' value={selectedReceiver} onInput={e => setSelectedReceiver(e.target.value)} />
-		// 		<div>{loadConversationButton()}</div>
-		// 		<div>{getLatestMessageButton()}</div>
-		// 		<div>{addButton()}</div>
-		// 		<div>{getContactsButton()}</div>
-		// 		<h3>{latestMessage}</h3>
-		// 		<h3>{number}</h3>
-		// 	</div>
-		// 	<div>
-		// 		<div>
-		// 			<Identicon style={{borderRadius: '50%'}} size='40' string='0x5E721F2a9b14A3bB3f727CF5bD2e7CdE594Abe96' />
-		// 		</div>
-		// 		<div>
-		// 			<div style={{fontWeight: 'normal', marginBottom: 10}}>0x5E721F2a9b14A3bB3f727CF5bD2e7CdE594Abe96</div>
-		// 			<div style={{fontWeight: 'normal'}}>got some bayc lol</div>
-		// 			{/* <ChatRoom conversation={conversation} /> */
-	}
-	// 		</div>
-	// 	</div>
-	// </div> */}
-
-	// useEffect(() => {
-	// 	async function load() {
-	// 		const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-	// 		const accounts = await web3.eth.requestAccounts();
-	// 		setAccount(accounts[0]);
-
-	// 		const contactList = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
-
-	// 		setContactList(contactList);
-
-	// 		const counter = await contactList.methods.count().call();
-
-	// 		for (var i = 1; i <= counter; i++) {
-	// 			const contact = await contactList.methods.contacts(i).call();
-	// 			setContacts((contacts) => [...contacts, contact]);
-	// 		}
-	// 	}
-
-	// 	load();
-	// }, []);
-
-	// return (
-	// 	<div>
-	// 		Your account is: {account}
-	// 		<h1>Contacts</h1>
-	// 		<ul>
-	// 			{Object.keys(contacts).map((contact, index) => (
-	// 				<li key={`${contacts[index].name}-${index}`}>
-	// 					<h4>{contacts[index].name}</h4>
-	// 					<span>
-	// 						<b>Phone: </b>
-	// 						{contacts[index].phone}
-	// 					</span>
-	// 				</li>
-	// 			))}
-	// 		</ul>
-	// 	</div>
-	// );
 }
 
 export default App

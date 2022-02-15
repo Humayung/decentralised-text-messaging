@@ -1,4 +1,3 @@
-import Flexbox from 'flexbox-react'
 import Box from '@material-ui/core/Box'
 import React from 'react'
 class ChatBubble extends React.Component {
@@ -12,7 +11,7 @@ class ChatBubble extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.id == 1 ? (
+				{this.id === 1 ? (
 					<div width='100%' style={{float: 'left'}}>
 						<Box paddingY={1} paddingX={2} color='white' bgcolor='#676D88' borderRadius={17}>
 							<div flexShr style={{fontSize: 15, fontWeight: 'normal'}}>
